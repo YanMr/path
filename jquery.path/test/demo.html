@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">
+		#moveme{width:100px;height:100px;background:green;position:absolute;top:185px;left:185px;}
+		</style>
+	</head>
+	<body>
+		资源地址<br />
+		<a href="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" target="_blank">http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js</a><br />
+		<a href="https://github.com/weepy/jquery.path" target="_blank">https://github.com/weepy/jquery.path</a><br />
+		<a href="http://weepy.github.io/jquery.path/" target="_blank">http://weepy.github.io/jquery.path/</a><br />
+		<input type="button" id="start" value="start" />
+		<div id="moveme"></div>
+		<script src="../jquery.min.js"></script>
+		<script src="../jquery.path.js"></script>
+		<script>
+		var bezier_params = {
+		    start: {
+		        x: 185,
+		        y: 185,
+		        angle: 60
+		    },
+		    end: {
+		        x: 540,
+		        y: 540,
+		        angle: -60,
+		        length: 0.33
+		    }
+		};
+
+		$('#start').click(function(){
+			$("#moveme").show().animate({
+				path: new $.path.bezier(bezier_params)
+			}, function () {
+			    // 动画结束后等待3秒隐藏
+				$(this).delay(3000).fadeOut();
+			});
+		});
+		</script>
+	</body>
+</html>
